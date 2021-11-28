@@ -1,5 +1,7 @@
 package com.mfk.ecommerce.entities;
 
+import com.mfk.ecommerce.enumerateur.DeviseEnum;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -15,12 +17,13 @@ public class UserEntity {
     private String role;
     private String telephone;
     private byte actif;
-    private Object devise;
+    private DeviseEnum devise;
     private String password;
     private List<AdresseEntity> adresses;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -99,13 +102,13 @@ public class UserEntity {
         this.actif = actif;
     }
 
-    @Basic
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "devise")
-    public Object getDevise() {
+    public DeviseEnum getDevise() {
         return devise;
     }
 
-    public void setDevise(Object devise) {
+    public void setDevise(DeviseEnum devise) {
         this.devise = devise;
     }
 
@@ -132,7 +135,7 @@ public class UserEntity {
         return Objects.hash(id, username, name, surname, email, role, telephone, actif, devise, password);
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     public List<AdresseEntity> getAdresses() {
         return adresses;
     }

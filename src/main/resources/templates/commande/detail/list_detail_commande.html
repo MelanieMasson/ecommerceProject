@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="fr" >
+<head class="mb-5" th:include="~{ fragments/head::#head }"></head>
+<body>
+
+<header class="mb-5" th:include="~{ fragments/header::#header }"></header>
+
+<main class="container">
+
+    <h1>Liste des commandes</h1>
+
+    <form method="get" action="/commande">
+        <div class="row my-4">
+            <div class="col-4">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search" placeholder="Rechercher" th:value="${search}" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="col-4">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="form-line mb-4">
+        <label class="form-label">Recherche : </label>
+        <input class="form-control" type="text" id="search_input" name="search" placeholder="nom de l'utilisateur" th:oninput="|search('patient')|">
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Numéro de la commande</th>
+            <th>Nom du produit</th>
+            <th>Prix unitaire</th>
+            <th>Quantité</th>
+            <th>Réduction</th>
+            <th>Prix total</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="detail : ${ details }" class="commande">
+            <td th:text="${ detail.id }"></td>
+            <td th:text="${ detail.commande.id }"></td>
+            <td th:text="${ detail.produit.name }"></td>
+            <td th:text="${ detail.prixUnitaire }"></td>
+            <td th:text="${ detail.quantite }"></td>
+            <td th:text="${ detail.reduction }"></td>
+            <td th:text="${ detail.quantite } * ${detail.prixUnitaire} * (1 - ${detail.reduction})"></td>
+            <td>
+                <a class="btn btn-secondary btn-sm" th:href="@{'/commande/detail/edit?id=' + ${detail.id}}" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <button class="btn btn-danger btn-sm" th:onclick="|supprimer( 'commande/detail' , ${detail.id} )|"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <span class="badge btn-secondary mb-3 float-end" style="align-items: end" th:text="| ${nombresDetails} commande(s) trouvée(s) |"></span>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" th:each="i : ${#numbers.sequence(1 , nombrePages)} " th:classappend="(${page}==${i}) ?'active' : ''">
+                <a class="page-link" th:text="${i}" th:href="@{'/commande/detail/' + ${id_commande} + '?page=' + ${i}}" ></a>
+            </li>
+        </ul>
+    </nav>
+</main>
+</body>
+</html>

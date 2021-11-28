@@ -11,9 +11,11 @@ public class DetailCommandesEntity {
     private int reduction;
     private int quantite;
     private ProduitEntity produit;
+    private CommandesEntity commande;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -50,6 +52,16 @@ public class DetailCommandesEntity {
 
     public void setQuantite(int quantite) {
         this.quantite = quantite;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="commandes_id", nullable=false)
+    public CommandesEntity getCommande() {
+        return commande;
+    }
+
+    public void setCommande(CommandesEntity commande) {
+        this.commande = commande;
     }
 
     @Override

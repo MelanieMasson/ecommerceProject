@@ -8,9 +8,11 @@ import java.util.Objects;
 public class ImageEntity {
     private int id;
     private String name;
+    private ProduitEntity produit;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -27,6 +29,16 @@ public class ImageEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="produit_id", nullable=false)
+    public ProduitEntity getProduit() {
+        return produit;
+    }
+
+    public void setProduit(ProduitEntity produit) {
+        this.produit = produit;
     }
 
     @Override
