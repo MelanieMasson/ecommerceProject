@@ -8,7 +8,20 @@ import java.util.Objects;
 public class ImageEntity {
     private int id;
     private String name;
+    private ProduitEntity produit;
 
+
+
+
+    @ManyToOne
+    @JoinColumn(name="produit", nullable=false)
+    public ProduitEntity getProduit() {
+        return produit;
+    }
+
+    public void setProduit(ProduitEntity produit) {
+        this.produit = produit;
+    }
     @Id
     @Column(name = "id")
     public int getId() {

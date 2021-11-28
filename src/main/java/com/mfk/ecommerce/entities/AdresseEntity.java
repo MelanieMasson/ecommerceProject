@@ -10,7 +10,18 @@ public class AdresseEntity {
     private String ville;
     private String codePostal;
     private String pays;
+    private UserEntity user;
 
+
+    @ManyToOne
+    @JoinColumn(name="user", nullable=false)
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
     @Id
     @Column(name = "id")
     public int getId() {

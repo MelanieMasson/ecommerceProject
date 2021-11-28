@@ -11,6 +11,17 @@ public class DetailCommandesEntity {
     private int reduction;
     private int quantite;
     private ProduitEntity produit;
+    private CommandesEntity commande;
+
+    @ManyToOne
+    @JoinColumn(name="commandes", nullable=false)
+    public CommandesEntity getCommande() {
+        return commande;
+    }
+
+    public void setCommande(CommandesEntity commande) {
+        this.commande = commande;
+    }
 
     @Id
     @Column(name = "id")

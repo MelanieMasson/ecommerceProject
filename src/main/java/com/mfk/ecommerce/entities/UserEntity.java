@@ -15,7 +15,7 @@ public class UserEntity {
     private String role;
     private String telephone;
     private byte actif;
-    private Object devise;
+    private Enum devise;
     private String password;
     private List<AdresseEntity> adresses;
 
@@ -101,11 +101,11 @@ public class UserEntity {
 
     @Basic
     @Column(name = "devise")
-    public Object getDevise() {
+    public Enum getDevise() {
         return devise;
     }
 
-    public void setDevise(Object devise) {
+    public void setDevise(Enum devise) {
         this.devise = devise;
     }
 
@@ -118,14 +118,16 @@ public class UserEntity {
     public void setPassword(String password) {
         this.password = password;
     }
-
+/*
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Enum o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
         return id == that.id && actif == that.actif && Objects.equals(username, that.username) && Objects.equals(name, that.name) && Objects.equals(surname, that.surname) && Objects.equals(email, that.email) && Objects.equals(role, that.role) && Objects.equals(telephone, that.telephone) && Objects.equals(devise, that.devise) && Objects.equals(password, that.password);
     }
+
+ */
 
     @Override
     public int hashCode() {
