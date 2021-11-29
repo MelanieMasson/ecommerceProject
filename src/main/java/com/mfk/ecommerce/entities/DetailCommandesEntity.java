@@ -55,7 +55,7 @@ public class DetailCommandesEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name="commandes_id", nullable=false)
+    @JoinColumn(name="commande", nullable=false)
     public CommandesEntity getCommande() {
         return commande;
     }

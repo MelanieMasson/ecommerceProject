@@ -1,6 +1,8 @@
 package com.mfk.ecommerce.service;
 
+import com.mfk.ecommerce.entities.CommandesEntity;
 import com.mfk.ecommerce.entities.DetailCommandesEntity;
+import com.mfk.ecommerce.repositories.CommandesRepository;
 import com.mfk.ecommerce.repositories.DetailCommandesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +17,9 @@ public class DetailCommandesService {
 
     @Autowired
     private DetailCommandesRepository dcr;
+
+    @Autowired
+    private CommandesRepository cr;
 
     public DetailCommandesEntity findById(int id){
         try {
@@ -44,8 +49,14 @@ public class DetailCommandesService {
             dcu.setCommande(dc.getCommande());
             dcu.setReduction(dc.getReduction());
             dcu.setProduit(dc.getProduit());
+            dcu.getCommande().setValueGlobal(
+                    dcu.getCommande().getValueGlobal() -
+                    dcu.getQuantite() * dcu.getPrixUnitaire() +
+                    dc.getQuantite() * dc.getPrixUnitaire()
+            );
             dcu.setQuantite(dc.getQuantite());
             dcu.setPrixUnitaire(dc.getPrixUnitaire());
+
 
             dcr.save(dcu);
 
@@ -55,6 +66,13 @@ public class DetailCommandesService {
     }
 
     public void delete(int id){
-        dcr.delete(this.findById(id));
+        DetailCommandesEntity dcu = this.findById(id);
+        int value = dcu.getPrixUnitaire() * dcu.getQuantite();
+        CommandesEntity cu = dcu.getCommande();
+
+        dcr.delete(dcu);
+
+        cu.setValueGlobal(cu.getValueGlobal() - value);
+        cr.save(cu);
     }
 }

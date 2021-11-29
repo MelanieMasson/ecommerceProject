@@ -54,7 +54,7 @@ public class AdresseEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
+    @JoinColumn(name="user", nullable=false)
     public UserEntity getUser() {
         return user;
     }
