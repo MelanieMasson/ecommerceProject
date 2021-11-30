@@ -21,6 +21,7 @@ public class ProduitEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -112,7 +113,7 @@ public class ProduitEntity {
         return Objects.hash(id, name, description, prixUnitaire, quantite, marque, promo, epuiser);
     }
 
-    @OneToMany(mappedBy = "produit")
+    @OneToMany(mappedBy = "produit", cascade = CascadeType.REMOVE)
     public List<ImageEntity> getImages() {
         return images;
     }

@@ -21,6 +21,7 @@ public class CommandesEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -30,7 +31,7 @@ public class CommandesEntity {
     }
 
     @Basic
-    @Column(name = "date_cmd")
+    @Column(name = "date_cmd", nullable = true)
     public Date getDateCmd() {
         return dateCmd;
     }
@@ -40,7 +41,7 @@ public class CommandesEntity {
     }
 
     @Basic
-    @Column(name = "date_validation")
+    @Column(name = "date_validation", nullable = true)
     public Date getDateValidation() {
         return dateValidation;
     }
@@ -50,7 +51,7 @@ public class CommandesEntity {
     }
 
     @Basic
-    @Column(name = "date_expedition")
+    @Column(name = "date_expedition", nullable = true)
     public Date getDateExpedition() {
         return dateExpedition;
     }
@@ -60,7 +61,7 @@ public class CommandesEntity {
     }
 
     @Basic
-    @Column(name = "date_received")
+    @Column(name = "date_received", nullable = true)
     public Date getDateReceived() {
         return dateReceived;
     }
@@ -122,7 +123,7 @@ public class CommandesEntity {
         this.user = user;
     }
 
-    @OneToMany(mappedBy = "commande")
+    @OneToMany(mappedBy = "commande", cascade = CascadeType.REMOVE)
     public List<DetailCommandesEntity> getDetails_commandes() {
         return details_commandes;
     }
