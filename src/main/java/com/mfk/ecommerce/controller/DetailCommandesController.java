@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.sql.Date;
 
 @Controller
@@ -25,6 +26,7 @@ public class DetailCommandesController {
 
     @Autowired
     private DetailCommandesService dcs;
+
 
     @Autowired
     private CommandesService cs;
@@ -47,6 +49,7 @@ public class DetailCommandesController {
 
         return "commande/detail/list_detail_commande";
     }
+}
 
     @PostMapping(value = "/add")
     public String addPatient(HttpServletRequest request, Model model) {

@@ -1,5 +1,6 @@
 package com.mfk.ecommerce.service;
 
+
 import com.mfk.ecommerce.entities.CommandesEntity;
 import com.mfk.ecommerce.entities.DetailCommandesEntity;
 import com.mfk.ecommerce.repositories.CommandesRepository;
@@ -17,6 +18,7 @@ public class DetailCommandesService {
 
     @Autowired
     private DetailCommandesRepository dcr;
+
 
     @Autowired
     private CommandesRepository cr;
@@ -49,6 +51,9 @@ public class DetailCommandesService {
             dcu.setCommande(dc.getCommande());
             dcu.setReduction(dc.getReduction());
             dcu.setProduit(dc.getProduit());
+            dcu.setQuantite(dc.getQuantite());
+            dcu.setPrixUnitaire(dc.getPrixUnitaire());
+
             dcu.getCommande().setValueGlobal(
                     dcu.getCommande().getValueGlobal() -
                     dcu.getQuantite() * dcu.getPrixUnitaire() +
@@ -56,7 +61,6 @@ public class DetailCommandesService {
             );
             dcu.setQuantite(dc.getQuantite());
             dcu.setPrixUnitaire(dc.getPrixUnitaire());
-
 
             dcr.save(dcu);
 
@@ -66,12 +70,14 @@ public class DetailCommandesService {
     }
 
     public void delete(int id){
+        dcr.delete(this.findById(id));
         DetailCommandesEntity dcu = this.findById(id);
         int value = dcu.getPrixUnitaire() * dcu.getQuantite();
+      
         CommandesEntity cu = dcu.getCommande();
-
+      
         dcr.delete(dcu);
-
+      
         cu.setValueGlobal(cu.getValueGlobal() - value);
         cr.save(cu);
     }
