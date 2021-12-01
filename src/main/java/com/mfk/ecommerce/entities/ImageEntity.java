@@ -24,6 +24,7 @@ public class ImageEntity {
     }
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -40,6 +41,16 @@ public class ImageEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="produit", nullable=false)
+    public ProduitEntity getProduit() {
+        return produit;
+    }
+
+    public void setProduit(ProduitEntity produit) {
+        this.produit = produit;
     }
 
     @Override

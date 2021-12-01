@@ -13,18 +13,9 @@ public class DetailCommandesEntity {
     private ProduitEntity produit;
     private CommandesEntity commande;
 
-    @ManyToOne
-    @JoinColumn(name="commandes", nullable=false)
-    public CommandesEntity getCommande() {
-        return commande;
-    }
-
-    public void setCommande(CommandesEntity commande) {
-        this.commande = commande;
-    }
-
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -61,6 +52,16 @@ public class DetailCommandesEntity {
 
     public void setQuantite(int quantite) {
         this.quantite = quantite;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="commande", nullable=false)
+    public CommandesEntity getCommande() {
+        return commande;
+    }
+
+    public void setCommande(CommandesEntity commande) {
+        this.commande = commande;
     }
 
     @Override
