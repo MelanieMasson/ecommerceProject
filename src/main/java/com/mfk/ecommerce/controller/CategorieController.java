@@ -2,7 +2,7 @@ package com.mfk.ecommerce.controller;
 
 
 import com.mfk.ecommerce.entities.CategorieEntity;
-import com.mfk.ecommerce.services.CategorieService;
+import com.mfk.ecommerce.service.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;

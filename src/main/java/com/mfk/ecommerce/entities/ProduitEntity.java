@@ -19,6 +19,21 @@ public class ProduitEntity {
     private UserEntity user;
     private CategorieEntity categorie;
 
+    public ProduitEntity(String name, String description, int prixUnitaire, int quantite, String marque, int promo, byte epuiser, UserEntity user, CategorieEntity cat) {
+        this.name = name;
+        this.description = description;
+        this.prixUnitaire = prixUnitaire;
+        this.quantite = quantite;
+        this.marque = marque;
+        this.promo = promo;
+        this.epuiser = epuiser;
+        this.user = user;
+        this.categorie = cat;
+    }
+
+    public ProduitEntity() {
+    }
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

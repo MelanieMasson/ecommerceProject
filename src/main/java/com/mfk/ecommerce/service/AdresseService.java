@@ -1,10 +1,7 @@
 package com.mfk.ecommerce.service;
 
 import com.mfk.ecommerce.entities.AdresseEntity;
-import com.mfk.ecommerce.entities.CommandesEntity;
-import com.mfk.ecommerce.entities.UserEntity;
 import com.mfk.ecommerce.repositories.AdresseRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,7 +26,7 @@ public class AdresseService {
 
     public Iterable<AdresseEntity> findAll(String search) {
         if (search != null && search.length() > 0) {
-            return ar.findByNameContains(search);
+            return ar.findByVilleContains(search);
         }
         return ar.findAll();
     }
@@ -46,7 +43,7 @@ public class AdresseService {
         Pageable paging = PageRequest.of(pageNo, pageSize);
 
         if (search != null && search.length() > 0) {
-            return ar.findByNameContains(search, paging);
+            return ar.findByVilleContains(search, paging);
         }
 
         return ar.findAll(paging);
