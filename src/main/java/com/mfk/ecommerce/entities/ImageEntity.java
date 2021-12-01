@@ -32,7 +32,7 @@ public class ImageEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name="produit_id", nullable=false)
+    @JoinColumn(name="produit", nullable=false)
     public ProduitEntity getProduit() {
         return produit;
     }

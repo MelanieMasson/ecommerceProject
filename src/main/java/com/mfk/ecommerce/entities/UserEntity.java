@@ -17,6 +17,7 @@ public class UserEntity {
     private String role;
     private String telephone;
     private String actif;
+    private DeviseEnum devise;
     private String password;
     private List<AdresseEntity> adresses;
 
@@ -115,6 +116,16 @@ public class UserEntity {
 
     public void setActif(String actif) {
         this.actif = actif;
+    }
+
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "devise")
+    public DeviseEnum getDevise() {
+        return devise;
+    }
+
+    public void setDevise(DeviseEnum devise) {
+        this.devise = devise;
     }
 
     @Basic
