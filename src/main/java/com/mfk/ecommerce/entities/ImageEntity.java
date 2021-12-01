@@ -10,18 +10,14 @@ public class ImageEntity {
     private String name;
     private ProduitEntity produit;
 
-
-
-
-    @ManyToOne
-    @JoinColumn(name="produit", nullable=false)
-    public ProduitEntity getProduit() {
-        return produit;
+    public ImageEntity(String name, ProduitEntity prod) {
+        this.name = name;
+        this.produit = prod;
     }
 
-    public void setProduit(ProduitEntity produit) {
-        this.produit = produit;
+    public ImageEntity() {
     }
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

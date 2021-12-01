@@ -2,8 +2,8 @@ package com.mfk.ecommerce.controller;
 
 import com.mfk.ecommerce.entities.ImageEntity;
 import com.mfk.ecommerce.entities.ProduitEntity;
-import com.mfk.ecommerce.services.ImageService;
-import com.mfk.ecommerce.services.ProduitService;
+import com.mfk.ecommerce.service.ImageService;
+import com.mfk.ecommerce.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

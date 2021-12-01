@@ -1,4 +1,4 @@
-package com.mfk.ecommerce.services;
+package com.mfk.ecommerce.service;
 
 import com.mfk.ecommerce.entities.ProduitEntity;
 import com.mfk.ecommerce.repositories.ProduitRepository;
@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.InvalidObjectException;
 import java.util.NoSuchElementException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 @Service
 public class ProduitService {
 

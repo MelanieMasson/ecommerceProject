@@ -1,4 +1,4 @@
-package com.mfk.ecommerce.services;
+package com.mfk.ecommerce.service;
 
 import com.mfk.ecommerce.entities.CategorieEntity;
 import com.mfk.ecommerce.repositories.CategorieRepository;

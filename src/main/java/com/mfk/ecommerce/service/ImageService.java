@@ -1,4 +1,4 @@
-package com.mfk.ecommerce.services;
+package com.mfk.ecommerce.service;
 
 import com.mfk.ecommerce.entities.ImageEntity;
 import com.mfk.ecommerce.repositories.ImageRepository;

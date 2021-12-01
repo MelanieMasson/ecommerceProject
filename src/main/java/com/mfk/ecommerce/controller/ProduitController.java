@@ -3,9 +3,10 @@ package com.mfk.ecommerce.controller;
 import com.mfk.ecommerce.entities.CategorieEntity;
 import com.mfk.ecommerce.entities.ProduitEntity;
 import com.mfk.ecommerce.entities.UserEntity;
-import com.mfk.ecommerce.services.CategorieService;
-import com.mfk.ecommerce.services.ImageService;
-import com.mfk.ecommerce.services.ProduitService;
+import com.mfk.ecommerce.service.CategorieService;
+import com.mfk.ecommerce.service.ImageService;
+import com.mfk.ecommerce.service.ProduitService;
+import com.mfk.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,10 +58,10 @@ public class ProduitController {
             // Récupération des paramètres envoyés en POST
             String name = request.getParameter("name");
             String description = request.getParameter("description");
-            Double prixUnitaire =Double.parseDouble( request.getParameter("prixUnitaire"));
+            int prixUnitaire = Integer.valueOf( request.getParameter("prixUnitaire"));
             int quantite =Integer.parseInt( request.getParameter("quantite"));
             String marque = request.getParameter("marque");
-            Double promo = Double.parseDouble(request.getParameter("promo"));
+            int promo = Integer.valueOf(request.getParameter("promo"));
             byte epuiser =Byte.parseByte(request.getParameter("epuiser"));
             /**
              *  TODO rjouter la collection des images dans produits 
@@ -76,6 +77,7 @@ public class ProduitController {
             user.setId(userId);
 
             ProduitEntity produit= new ProduitEntity(  name , description , prixUnitaire  , quantite , marque , promo,epuiser,user,cat);
+
             /**
              *  TODO rjouter la collection des images dans produits 
              */
@@ -92,7 +94,7 @@ public class ProduitController {
                  *  TODO rjouter la collection des images dans produits
                  */
                 //model.addAttribute("images" , images);
-                model.addAttribute("users" , UserService.findAll() );
+                model.addAttribute("users" , userService.findAll() );
                 model.addAttribute("categories" , categorieService.findAll() );
                 model.addAttribute("error" , e.getMessage() );
                 return "produit/add_edit";
@@ -117,10 +119,10 @@ public class ProduitController {
             // Récupération des paramètres envoyés en POST
             String name = request.getParameter("name");
             String description = request.getParameter("description");
-            Double prixUnitaire = Double.parseDouble(request.getParameter("prixUnitaire"));
+            int prixUnitaire = Integer.parseInt(request.getParameter("prixUnitaire"));
             int quantite =Integer.parseInt( request.getParameter("quantite"));
             String marque = request.getParameter("marque");
-           Double promo = Double.parseDouble(request.getParameter("promo"));
+            int promo = Integer.parseInt(request.getParameter("promo"));
             Byte epuiser = Byte.parseByte(request.getParameter("epuiser"));
             int images = Integer.parseInt(request.getParameter("images"));
             int userId = Integer.parseInt(request.getParameter("userId"));

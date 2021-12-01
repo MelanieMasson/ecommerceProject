@@ -49,7 +49,7 @@ public class DetailCommandesController {
 
         return "commande/detail/list_detail_commande";
     }
-}
+
 
     @PostMapping(value = "/add")
     public String addPatient(HttpServletRequest request, Model model) {
