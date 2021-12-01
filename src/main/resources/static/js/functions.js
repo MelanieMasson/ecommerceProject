@@ -1,17 +1,7 @@
-function supprimer(resource, id){
-    if (confirm("Êtes vous sur ?")){
-        window.location = resource + '/delete?id=' + id;
-    }
-}
 
-function search(resource){
-    let value = document.getElementById("search_input").value;
-    let villes = document.getElementsByClassName(resource);
-    for (let i = 0; i < villes.length; i++){
-        if (villes[i].cells[1].innerText.toLowerCase().includes(value.toLowerCase()))
-            villes[i].style.display = "";
-        else
-            villes[i].style.display = "none";
+function supprimer( resource , id ) {
+    if (confirm("Êtes vous sûr ?")) {
+        window.location = '/'+resource+'/delete/' + id;
     }
 }
 
@@ -36,5 +26,4 @@ setTimeout(function(){
         error.style.display = "none";
     if (success != null)
         success.style.display = "none";
-
 }, 5000);

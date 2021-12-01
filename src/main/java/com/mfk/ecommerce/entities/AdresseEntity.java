@@ -12,6 +12,16 @@ public class AdresseEntity {
     private String pays;
     private UserEntity user;
 
+
+    @ManyToOne
+    @JoinColumn(name="user", nullable=false)
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

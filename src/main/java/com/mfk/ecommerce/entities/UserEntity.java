@@ -118,7 +118,7 @@ public class UserEntity {
         this.actif = actif;
     }
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @Column(name = "devise")
     public DeviseEnum getDevise() {
         return devise;
@@ -137,14 +137,16 @@ public class UserEntity {
     public void setPassword(String password) {
         this.password = password;
     }
-
+/*
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Enum o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
         return id == that.id && Objects.equals(name, that.name) && Objects.equals(surname, that.surname) && Objects.equals(email, that.email) && Objects.equals(role, that.role) && Objects.equals(telephone, that.telephone) && Objects.equals(actif, that.actif) && Objects.equals(password, that.password);
     }
+
+ */
 
     @Override
     public int hashCode() {

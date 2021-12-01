@@ -10,6 +10,15 @@ public class CategorieEntity {
     private String name;
     private String description;
 
+    public CategorieEntity(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public CategorieEntity() {
+
+    }
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
