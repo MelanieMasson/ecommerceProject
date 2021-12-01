@@ -10,9 +10,11 @@ public class AdresseEntity {
     private String ville;
     private String codePostal;
     private String pays;
+    private UserEntity user;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -49,6 +51,16 @@ public class AdresseEntity {
 
     public void setPays(String pays) {
         this.pays = pays;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="user", nullable=false)
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
     @Override
